@@ -82,6 +82,9 @@
         self.nextViewController.view.frame = CGRectMake(CGRectGetMaxX(self.viewControllers[0].view.frame), 0, CGRectGetWidth(self.scrollView.bounds), CGRectGetHeight(self.scrollView.bounds));
     }
 
+    if ([self.delegate respondsToSelector:@selector(pageViewController:didTranslateToViewController:)]) {
+        [self.delegate pageViewController:self didTranslateToViewController:self.viewControllers.firstObject];
+    }
 }
 
 - (void)scrollToNextPage {

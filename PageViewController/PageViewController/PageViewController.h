@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PageViewControllerDataSource;
+@protocol PageViewControllerDelegate;
 
 @interface PageViewController : UIViewController
 
@@ -18,10 +19,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<__kindof UIViewController *> *viewControllers;
 
 @property (nonatomic, weak) id<PageViewControllerDataSource> dataSource;
-
+@property (nonatomic, weak) id<PageViewControllerDelegate> delegate;
 
 @end
 
+@protocol PageViewControllerDelegate <NSObject>
+
+@optional
+- (nullable UIViewController *)pageViewController:(PageViewController *)pageViewController didTranslateToViewController:(UIViewController *)viewController;
+
+@end
 
 @protocol PageViewControllerDataSource <NSObject>
 
